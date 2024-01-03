@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import ImageList from './components/ImageList';
 import axios from 'axios';
+import ImageList from './components/ImageList';
 import { ShibeParams } from './models/shibe';
 
 function App() {
@@ -31,13 +31,15 @@ function App() {
     }
   }
   return (
-    <div className="bg-gray-100">
-      <div className="sticky top-0 bg-blue-100 text-blue-900 text-center py-6 z-50">
+    <div className="bg-gray-100 flex flex-col h-screen">
+      <div className="bg-blue-100 text-blue-900 text-center py-6 z-50">
         <h1 className="text-2xl font-semibold">Hello there</h1>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <ImageList images={images} />
+      <div className="flex-grow overflow-auto">
+        <div className="container mx-auto px-4 py-8">
+          <ImageList images={images} />
+        </div>
       </div>
     </div>
   );
