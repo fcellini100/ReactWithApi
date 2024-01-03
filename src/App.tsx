@@ -32,6 +32,7 @@ function App() {
   }
   return (
     <div className="bg-gray-100 flex flex-col h-screen">
+      {/* TODO: move banner to its own component, maybe? */}
       <div className="bg-blue-100 text-blue-900 text-center py-6 z-50">
         <h1 className="text-2xl font-semibold">Hello there</h1>
       </div>
