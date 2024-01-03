@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import ImageList from './components/ImageList';
+import { ShibeParams } from './models/shibe';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [images, setImages] = useState<string[]>([]);
+  useEffect(() => {
+    fetchData();
+    return () => {
+      //TODO check what to do with this
+    };
+  }, []);
 
+  async function fetchData() {
+    const url = 'http://shibe.online/api/shibes';
+    const params: ShibeParams = {
+      count: 100,
+    };
+    try {
+      const response = await axios.get(url, {
+        params: params,
+      });
+      setImages(response.data as string[]);
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        console.log('Request canceled:', error.message);
+      } else {
+        console.error('Error fetching data:', error);
+      }
+    }
+  }
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-gray-100 flex flex-col h-screen">
+      {/* TODO: move banner to its own component, maybe? */}
+      <div className="bg-blue-100 text-blue-900 text-center py-6 z-50">
+        <h1 className="text-2xl font-semibold">Hello there</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className="flex-grow overflow-auto">
+        <div className="container mx-auto px-4 py-8">
+          <ImageList images={images} />
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
