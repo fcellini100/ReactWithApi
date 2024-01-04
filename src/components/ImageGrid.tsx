@@ -1,7 +1,7 @@
 const ImageGrid = ({ images }: { images: string[] }) => {
   const imageList = images.map((image, index) => (
     <div key={index} className="aspect-w-3 aspect-h-4 w-full overflow-hidden">
-      <img className="object-cover w-full h-full cursor-pointer" src={image}></img>
+      <img className="object-cover w-full h-full cursor-pointer obnoxious-hover" src={image}></img>
     </div>
   ));
 
