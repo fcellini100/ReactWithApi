@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ImageOption } from '../models/shibe';
 import { useDropdown } from '../contexts/dropdown/dropdown.context';
 
-const Dropdown: React.FC = () => {
+const Dropdown = () => {
   const [selected, setSelected] = useState<ImageOption>(ImageOption.SHIBES);
   const { setSelectedOption } = useDropdown();
 
