@@ -3,9 +3,9 @@ import Dropdown from './Dropdown';
 
 const Header = () => {
   return (
-    <div className="bg-blue-100 text-blue-900 text-center py-6 z-50 flex flex-row-reverse md:flex-row justify-center md:justify-between gap-5 items-center px-20 flex-wrap">
+    <div className="flex flex-col md:flex-row md:justify-between items-center bg-[#85b8c8] text-center py-6 px-5 md:px-20">
+      <img className="h-24 md:h-40 mb-4 md:mb-0 order-first md:order-none obnoxious-hover" src={dancingJesus} alt="Dancing Jesus" />
       <Dropdown />
-      <img className="h-40" src={dancingJesus} alt="Dancing Jesus" />
     </div>
   );
 };
