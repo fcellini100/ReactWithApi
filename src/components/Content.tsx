@@ -1,9 +1,17 @@
 import { fetchImages } from '../api/shibe';
 import { useQuery } from '@tanstack/react-query';
+import { useDropdown } from '../contexts/dropdown/dropdown.context';
 import ImageGrid from './ImageGrid';
 
 const Content = () => {
-  const { data: images, isLoading } = useQuery({ queryFn: fetchImages, queryKey: ['images'] });
+  const { selectedOption } = useDropdown();
+
+  const { data: images, isLoading } = useQuery({
+    queryFn: () => fetchImages(selectedOption),
+    queryKey: ['images', selectedOption],
+    staleTime: Infinity,
+  });
+
   const imageGrid = images ? <ImageGrid images={images} /> : null;
 
   if (isLoading) {

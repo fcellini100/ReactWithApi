@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { ShibeParams } from '../models/shibe';
 
-export const fetchImages = (): Promise<string[]> => {
-  const url = 'http://shibe.online/api/shibes';
+export const fetchImages = (type: string): Promise<string[]> => {
+  const url = `http://shibe.online/api/${type}`;
   const params: ShibeParams = {
     count: 100,
   };
